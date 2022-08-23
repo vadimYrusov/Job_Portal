@@ -5,10 +5,7 @@ import com.example.Job_Portal.repository.VacancyRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +16,7 @@ public class VacancyController {
 
     private final VacancyRepo vacancyRepo;
 
-    @GetMapping("/")
+    @GetMapping("/jobs")
     public String allJobs(Model model) {
         List<Vacancy> vacancies = vacancyRepo.findAll();
         model.addAttribute("jobs", vacancies);
@@ -33,28 +30,34 @@ public class VacancyController {
         return "create_job";
     }
 
-    @PostMapping("/job")
+    @GetMapping ("/jobs/{id}")
+    public String getJob(@PathVariable Long id, Model model) {
+        Vacancy vacancy = vacancyRepo.findById(id).get();
+        model.addAttribute("job", vacancy);
+        return "job";
+    }
+
+    @PostMapping("/jobs")
     public String saveJob(@ModelAttribute Vacancy vacancy) {
         vacancyRepo.save(vacancy);
         return "main";
     }
 
-    @GetMapping("/job/{id}")
+    @DeleteMapping ("/jobs/{id}")
     public String deleteJob(@PathVariable Long id) {
         vacancyRepo.deleteById(id);
         return "main";
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/jobs/{id}")
     public String updateJob(@PathVariable Long id, Model model) {
-        Optional<Vacancy> vacancy = vacancyRepo.findById(id);
+        Vacancy vacancy = vacancyRepo.findById(id).get();
         model.addAttribute("job", vacancy);
         return "update_job";
     }
 
-    @PostMapping("/{id}")
-    public String saveUpdate(@PathVariable Long id,
-                             @ModelAttribute("job") Vacancy vacancy) {
+    @PostMapping("/jobs/{id}")
+    public String saveUpdate(@PathVariable Long id, @ModelAttribute("job") Vacancy vacancy) {
         Vacancy existVacancy = vacancyRepo.findById(id).get();
         existVacancy.setName(vacancy.getName());
         existVacancy.setCompany(vacancy.getCompany());
@@ -66,6 +69,7 @@ public class VacancyController {
         existVacancy.setExperience(vacancy.getExperience());
         existVacancy.setTime(vacancy.getTime());
         existVacancy.setContacts(vacancy.getContacts());
+        vacancyRepo.save(existVacancy);
         return "main";
     }
 }
