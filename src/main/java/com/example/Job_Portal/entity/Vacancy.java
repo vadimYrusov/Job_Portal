@@ -34,11 +34,9 @@ public class Vacancy {
 
     private String benefits;
 
-    private String jobType;
-
-    private String experience;
-
     private LocalDateTime time;
 
-    private String contacts;
+    private String phone;
+
+    private String email;
 }

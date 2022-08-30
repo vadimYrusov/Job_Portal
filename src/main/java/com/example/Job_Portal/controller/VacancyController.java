@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -65,10 +64,7 @@ public class VacancyController {
         existVacancy.setSalary(vacancy.getSalary());
         existVacancy.setJobDetails(vacancy.getJobDetails());
         existVacancy.setBenefits(vacancy.getBenefits());
-        existVacancy.setJobType(vacancy.getJobType());
-        existVacancy.setExperience(vacancy.getExperience());
         existVacancy.setTime(vacancy.getTime());
-        existVacancy.setContacts(vacancy.getContacts());
         vacancyRepo.save(existVacancy);
         return "main";
     }
