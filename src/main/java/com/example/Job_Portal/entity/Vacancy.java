@@ -30,6 +30,8 @@ public class Vacancy {
 
     private Long salary;
 
+    private String category;
+
     private String jobDetails;
 
     private String benefits;

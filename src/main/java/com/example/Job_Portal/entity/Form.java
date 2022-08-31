@@ -27,11 +27,13 @@ public class Form {
 
     private String position;
 
+    private String region;
+
     private String summary;
 
     private String experience;
 
-    private String skills;
+    private String category;
 
     private String phone;
 

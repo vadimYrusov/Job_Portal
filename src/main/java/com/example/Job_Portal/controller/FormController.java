@@ -63,7 +63,6 @@ public class FormController {
         existingForm.setPosition(form.getPosition());
         existingForm.setSummary(form.getSummary());
         existingForm.setExperience(form.getExperience());
-        existingForm.setSkills(form.getSkills());
         existingForm.setPhone(form.getPhone());
         existingForm.setEmail(form.getEmail());
         formRepo.save(existingForm);

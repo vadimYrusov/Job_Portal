@@ -25,7 +25,7 @@ public class VacancyController {
     @GetMapping("/job")
     public String createJob(Model model) {
         Vacancy vacancy = new Vacancy();
-        model.addAttribute("jobs", vacancy);
+        model.addAttribute("job", vacancy);
         return "create_job";
     }
 
@@ -42,7 +42,7 @@ public class VacancyController {
         return "main";
     }
 
-    @DeleteMapping ("/jobs/{id}")
+    @GetMapping ("/job/{id}")
     public String deleteJob(@PathVariable Long id) {
         vacancyRepo.deleteById(id);
         return "main";
