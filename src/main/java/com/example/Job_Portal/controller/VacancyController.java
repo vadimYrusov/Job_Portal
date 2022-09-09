@@ -5,8 +5,12 @@ import com.example.Job_Portal.repository.VacancyRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -38,17 +42,18 @@ public class VacancyController {
 
     @PostMapping("/jobs")
     public String saveJob(@ModelAttribute Vacancy vacancy) {
+        vacancy.setTime(LocalDateTime.now());
         vacancyRepo.save(vacancy);
-        return "main";
+        return "redirect:/main";
     }
 
     @GetMapping ("/job/{id}")
     public String deleteJob(@PathVariable Long id) {
         vacancyRepo.deleteById(id);
-        return "main";
+        return "redirect:/main";
     }
 
-    @PutMapping("/jobs/{id}")
+    @GetMapping("/jobs/{id}/update")
     public String updateJob(@PathVariable Long id, Model model) {
         Vacancy vacancy = vacancyRepo.findById(id).get();
         model.addAttribute("job", vacancy);
@@ -66,6 +71,6 @@ public class VacancyController {
         existVacancy.setBenefits(vacancy.getBenefits());
         existVacancy.setTime(vacancy.getTime());
         vacancyRepo.save(existVacancy);
-        return "main";
+        return "redirect:/main";
     }
 }

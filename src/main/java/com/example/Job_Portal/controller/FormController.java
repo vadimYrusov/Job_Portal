@@ -39,16 +39,16 @@ public class FormController {
     @PostMapping("/forms")
     public String saveForm(@ModelAttribute Form form) {
         formRepo.save(form);
-        return "froms";
+        return "redirect:/forms";
     }
 
-    @DeleteMapping("/forms/{id}")
+    @GetMapping("/form/{id}")
     public String deleteForm(@PathVariable Long id) {
         formRepo.deleteById(id);
-        return "forms";
+        return "redirect:/forms";
     }
 
-    @PutMapping("/forms/{id}")
+    @GetMapping("/forms/{id}/update")
     public String updateForm(@PathVariable Long id, Model model) {
         Form form = formRepo.findById(id).get();
         model.addAttribute("form", form);
@@ -66,6 +66,6 @@ public class FormController {
         existingForm.setPhone(form.getPhone());
         existingForm.setEmail(form.getEmail());
         formRepo.save(existingForm);
-        return "forms";
+        return "redirect:/forms";
     }
  }

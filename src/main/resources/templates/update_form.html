@@ -36,7 +36,7 @@
             <div class="card" style="border-radius: 15px">
                 <div class="card-body" style=" background-color: #1b2024">
 
-                    <form th:action="@{/forms}" th:object="${form}" method="post">
+                    <form th:action="@{/forms/{id}(id=${form.id})}" th:object="${form}" method="post">
 
                         <div class="row align-items-center pt-4 pb-3">
                             <div class="col-md-3 ps-5">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg"/>
+                                <input th:field="*{name}" type="text" class="form-control form-control-lg"/>
 
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg"/>
+                                <input th:field="*{surname}" type="text" class="form-control form-control-lg"/>
 
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg" placeholder="Your location"/>
+                                <input th:field="*{region}" type="text" class="form-control form-control-lg" placeholder="Your location"/>
 
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg" placeholder="Salary">
+                                <input th:field="*{category}" type="text" class="form-control form-control-lg" placeholder="Salary">
 
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg"/>
+                                <input th:field="*{position}" type="text" class="form-control form-control-lg"/>
 
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <textarea class="form-control" rows="3"
+                                <textarea th:field="*{summary}" class="form-control" rows="3"
                                           placeholder="Something about you"></textarea>
 
                             </div>
@@ -125,7 +125,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <textarea class="form-control" rows="3"
+                                <textarea th:field="*{experience}" class="form-control" rows="3"
                                           placeholder="Your job experience"></textarea>
 
                             </div>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="email" class="form-control form-control-lg"
+                                <input th:field="*{email}" type="email" class="form-control form-control-lg"
                                        placeholder="example@example.com"/>
 
                             </div>
@@ -155,7 +155,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg"
+                                <input th:field="*{phone}" type="text" class="form-control form-control-lg"
                                        placeholder="Company phone number"/>
 
                             </div>

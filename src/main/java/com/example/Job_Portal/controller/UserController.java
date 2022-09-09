@@ -25,22 +25,22 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/users")
-    public String users(Model model) {
-        User user = new User(user);
-        model.addAttribute("user", user);
-        return "registration";
-    }
-
-    @PostMapping("/registration")
-    public String saveUser(@ModelAttribute("user") User user, HttpServletRequest request) throws ServletException {
-        String password = user.getPassword();
-        user.setPassword(bCryptPasswordEncoder.encode(password));
-        List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findById(2L).get());
-        user.setRoles(roles);
-        userRepository.save(user);
-        request.login(user.getEmail(), password);
-        return "redirect:/items";
-    }
+//    @GetMapping("/users")
+//    public String users(Model model) {
+//        User user = new User(user);
+//        model.addAttribute("user", user);
+//        return "registration";
+//    }
+//
+//    @PostMapping("/registration")
+//    public String saveUser(@ModelAttribute("user") User user, HttpServletRequest request) throws ServletException {
+//        String password = user.getPassword();
+//        user.setPassword(bCryptPasswordEncoder.encode(password));
+//        List<Role> roles = new ArrayList<>();
+//        roles.add(roleRepository.findById(2L).get());
+//        user.setRoles(roles);
+//        userRepository.save(user);
+//        request.login(user.getEmail(), password);
+//        return "redirect:/items";
+//    }
 }

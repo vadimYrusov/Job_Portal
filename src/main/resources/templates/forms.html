@@ -11,13 +11,16 @@
     <div class="container-fluid">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">Link</a>
+                <a class="nav-link" th:href="@{/jobs}">Main</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/form}">Add new Form</a>
+                <a class="nav-link" th:href="@{/forms}">Forms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/job}">Add new job</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/form}">Add new form</a>
             </li>
         </ul>
         <form class="d-flex">
@@ -27,15 +30,18 @@
     </div>
 </nav>
 
-<div class="card bg-dark text-white" style="max-width: 800px; width: 50%; margin: 5% auto;">
+<div class="card bg-dark text-white" style="max-width: 800px; width: 50%; margin: 5% auto;" th:each="form : ${forms}">
     <div class="card-body">
-        <span>
+        <span th:text="${form.name}">
             Name
         </span>
-        <span>Category</span>
-        <h5>Position</h5>
-        <span>phone</span>
-        <span>email</span>
+        <span th:text="${form.getCategory()}">Category</span>
+        <h5 th:text="${form.getPosition()}">Position</h5>
+        <span th:text="${form.getPhone()}">phone</span>
+        <span th:text="${form.getEmail()}">email</span>
+        <a class="btn btn-light" style="color: #1b2024" th:href="@{/forms/{id}(id=${form.id})}">Info</a>
+        <a class="btn btn-light" style="color: #1b2024" th:href="@{/forms/{id}/update(id=${form.id})}">Edit</a>
+        <a class="btn btn-light" style="color: #1b2024" th:href="@{/form/{id}(id=${form.id})}">Delete</a>
     </div>
 </div>
 </body>

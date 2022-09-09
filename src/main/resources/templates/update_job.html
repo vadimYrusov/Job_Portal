@@ -36,7 +36,7 @@
             <div class="card" style="border-radius: 15px">
                 <div class="card-body" style=" background-color: #1b2024">
 
-                    <form th:action="@{/jobs}" th:object="${job}" method="post">
+                    <form th:action="@{/jobs/{id}(id=${job.id})}" th:object="${job}" method="post">
 
                         <div class="row align-items-center pt-4 pb-3">
                             <div class="col-md-3 ps-5">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg" placeholder="Job title"/>
+                                <input th:field="*{name}" type="text" class="form-control form-control-lg" placeholder="Job title"/>
 
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg"
+                                <input th:field="*{company}" type="text" class="form-control form-control-lg"
                                        placeholder="Your company name"/>
 
                             </div>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg" placeholder="Job location"/>
+                                <input th:field="*{region}" type="text" class="form-control form-control-lg" placeholder="Job location"/>
 
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <textarea class="form-control" rows="3"
+                                <textarea th:field="*{jobDetails}" class="form-control" rows="3"
                                           placeholder="Job description"></textarea>
 
                             </div>
@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <textarea class="form-control" rows="3"
+                                <textarea th:field="*{benefits}" class="form-control" rows="3"
                                           placeholder="Your job benefits"></textarea>
 
                             </div>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg" placeholder="Salary">
+                                <input th:field="*{salary}" type="text" class="form-control form-control-lg" placeholder="Salary">
 
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="email" class="form-control form-control-lg"
+                                <input th:field="*{email}" type="email" class="form-control form-control-lg"
                                        placeholder="example@example.com"/>
 
                             </div>
@@ -143,7 +143,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg"
+                                <input th:field="*{phone}" type="text" class="form-control form-control-lg"
                                        placeholder="Company phone number"/>
 
                             </div>

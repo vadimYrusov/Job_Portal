@@ -5,23 +5,19 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<!--    <link th:href="@{/styles/css/main.css}" rel="stylesheet" />-->
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/jobs}">Main</a>
+                <a class="nav-link" href="">Link</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/forms}">Forms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/job}">Add new job</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/form}">Add new form</a>
             </li>
         </ul>
         <form class="d-flex">
@@ -31,17 +27,29 @@
     </div>
 </nav>
 
-<div class="card bg-dark text-white" style="max-width: 800px; width: 50%; margin: 5% auto;" th:each="job : ${jobs}">
+<div class="card bg-dark text-white" style="max-width: 800px; width: 50%; margin: 5% auto;">
     <div class="card-body">
-        <span th:text="${job.name}">
-            Job
+        <span th:text="${form.getName()}">
+            Name
         </span>
-        <span th:text="${job.company}">Company</span>
-        <h5 th:text="${job.jobDetails}">Description</h5>
-        <h6 th:text="${job.salary}">Salary</h6>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/jobs/{id}(id=${job.id})}">Info</a>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/jobs/{id}/update(id=${job.id})}">Edit</a>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/job/{id}(id=${job.id})}">Delete</a>
+        <span th:text="${form.getSurname()}">
+            Surname
+        </span>
+        <hr>
+        <h5 th:text="${form.getCategory()}">Category</h5>
+        <hr>
+        <h5 th:text="${form.getPosition()}">Position</h5>
+        <hr>
+        <h5 th:text="${form.getRegion()}">Region</h5>
+        <hr>
+        <h5 th:text="${form.getSummary()}">Summary</h5>
+        <hr>
+        <h5 th:text="${form.getExperience()}">Experience</h5>
+        <hr>
+        <h6 th:text="${form.getEmail()}">Email</h6>
+        <hr>
+        <h5 th:text="${form.getPhone()}">Phone</h5>
+
     </div>
 </div>
 </body>
