@@ -35,7 +35,7 @@ public class VacancyController {
 
     @GetMapping ("/jobs/{id}")
     public String getJob(@PathVariable Long id, Model model) {
-        Vacancy vacancy = vacancyRepo.findById(id).get();
+        Vacancy vacancy = vacancyRepo.getVacancyById(id);
         model.addAttribute("job", vacancy);
         return "job";
     }
@@ -55,14 +55,14 @@ public class VacancyController {
 
     @GetMapping("/jobs/{id}/update")
     public String updateJob(@PathVariable Long id, Model model) {
-        Vacancy vacancy = vacancyRepo.findById(id).get();
+        Vacancy vacancy = vacancyRepo.getVacancyById(id);
         model.addAttribute("job", vacancy);
         return "update_job";
     }
 
     @PostMapping("/jobs/{id}")
     public String saveUpdate(@PathVariable Long id, @ModelAttribute("job") Vacancy vacancy) {
-        Vacancy existVacancy = vacancyRepo.findById(id).get();
+        Vacancy existVacancy = vacancyRepo.getVacancyById(id);
         existVacancy.setName(vacancy.getName());
         existVacancy.setCompany(vacancy.getCompany());
         existVacancy.setRegion(vacancy.getRegion());

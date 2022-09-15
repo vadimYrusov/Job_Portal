@@ -21,5 +21,5 @@ public class Region {
 
     @Column(nullable = false, unique = true)
     @NotEmpty
-    private String region;
+    private String name;
 }

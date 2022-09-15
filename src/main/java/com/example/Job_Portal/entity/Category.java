@@ -21,5 +21,5 @@ public class Category {
 
     @Column(nullable = false, unique = true)
     @NotEmpty
-    private String category;
+    private String name;
 }

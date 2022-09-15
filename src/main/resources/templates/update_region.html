@@ -36,17 +36,42 @@
     </div>
 </nav>
 
-<div class="card bg-dark text-white" style="max-width: 800px; width: 50%; margin: 5% auto;" th:each="job : ${jobs}">
-    <div class="card-body">
-        <span th:text="${job.name}">
-            Job
-        </span>
-        <span th:text="${job.company}">Company</span>
-        <h5 th:text="${job.jobDetails}">Description</h5>
-        <h6 th:text="${job.salary}">Salary</h6>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/jobs/{id}(id=${job.id})}">Info</a>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/jobs/{id}/update(id=${job.id})}">Edit</a>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/job/{id}(id=${job.id})}">Delete</a>
+<div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-9">
+
+            <h1 class="text-black mb-4">Region</h1>
+
+            <div class="card" style="border-radius: 15px">
+                <div class="card-body" style=" background-color: #1b2024">
+
+                    <form th:action="@{/region/{id}(id=${category.id})}" th:object="${region}" method="post">
+
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0" style="color: #949292">Category name</h6>
+
+                            </div>
+                            <div class="col-md-9 pe-5">
+
+                                <input th:field="*{name}" type="text" class="form-control form-control-lg" placeholder="Region"/>
+
+                            </div>
+                        </div>
+
+                        <hr class="mx-n3">
+
+                        <div class="px-5 py-4">
+                            <button type="submit" class="btn btn-light" style="color: #1b2024">Add</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 </body>

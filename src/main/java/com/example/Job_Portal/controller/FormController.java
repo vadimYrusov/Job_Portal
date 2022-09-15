@@ -31,7 +31,7 @@ public class FormController {
 
     @GetMapping("/forms/{id}")
     public String getForm(@PathVariable Long id, Model model) {
-        Form form = formRepo.findById(id).get();
+        Form form = formRepo.getFormById(id);
         model.addAttribute("form", form);
         return "form";
     }
@@ -50,14 +50,14 @@ public class FormController {
 
     @GetMapping("/forms/{id}/update")
     public String updateForm(@PathVariable Long id, Model model) {
-        Form form = formRepo.findById(id).get();
+        Form form = formRepo.getFormById(id);
         model.addAttribute("form", form);
         return "update_form";
     }
 
     @PostMapping("/forms/{id}")
     public String saveUpdate(@PathVariable Long id, @ModelAttribute("form") Form form) {
-        Form existingForm = formRepo.findById(id).get();
+        Form existingForm = formRepo.getFormById(id);
         existingForm.setName(form.getName());
         existingForm.setSurname(form.getSurname());
         existingForm.setPosition(form.getPosition());

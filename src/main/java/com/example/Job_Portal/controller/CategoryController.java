@@ -24,38 +24,38 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
-    public String editCategory(Model model) {
+    public String listCategories(Model model) {
         model.addAttribute("categories", categoryRepo.findAll());
         return "categories";
     }
 
-//    @GetMapping("/categories/{id}")
-//    public String getCategory(Model model, @PathVariable Long id) {
-//        model.addAttribute("categories", categoryRepo.findById(id));
-//        return "categories";
-//    }
-//
-//    @PostMapping("/category")
-//    public String saveCategory(@ModelAttribute Category category) {
-//        categoryRepo.save(category);
-//        return "redirect:/items";
-//    }
-//
-//    @GetMapping("/categories/{id}")
-//    public String updateCategory(@PathVariable Long id, Model model) {
-//        Category category = categoryRepo.findById(id).get();
-//        model.addAttribute("category", category);
-//        return "category_edit";
-//    }
-//
-//    @PostMapping("/category/{id}")
-//    public String saveUpdateItem(@ModelAttribute Category category, @PathVariable Long id) {
-//        Category existCategory = categoryRepo.findById(id).get();
-//        existCategory.setId(category.getId());
-//        existCategory.setCategory(category.getCategory());
-//        categoryRepo.save(existCategory);
-//        return "redirect:/items";
-//    }
+    @GetMapping("/categories/{id}")
+    public String getCategory(Model model, @PathVariable Long id) {
+        model.addAttribute("categories", categoryRepo.findById(id));
+        return "category";
+    }
+
+    @PostMapping("/category")
+    public String saveCategory(@ModelAttribute Category category) {
+        categoryRepo.save(category);
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/category/{id}/update")
+    public String updateCategory(@PathVariable Long id, Model model) {
+        Category category = categoryRepo.getCategoryById(id);
+        model.addAttribute("category", category);
+        return "category_edit";
+    }
+
+    @PostMapping("/category/{id}")
+    public String saveUpdateItem(@ModelAttribute Category category, @PathVariable Long id) {
+        Category existCategory = categoryRepo.getCategoryById(id);
+        existCategory.setId(category.getId());
+        existCategory.setName(category.getName());
+        categoryRepo.save(existCategory);
+        return "redirect:/items";
+    }
 
     @GetMapping("/category/{id}")
     public String deleteCategory(@PathVariable Long id) {
