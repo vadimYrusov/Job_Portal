@@ -1,6 +1,8 @@
 package com.example.Job_Portal.controller;
 
 import com.example.Job_Portal.entity.Vacancy;
+import com.example.Job_Portal.repository.CategoryRepo;
+import com.example.Job_Portal.repository.RegionRepo;
 import com.example.Job_Portal.repository.VacancyRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,10 @@ public class VacancyController {
 
     private final VacancyRepo vacancyRepo;
 
+    private final CategoryRepo categoryRepo;
+
+    private final RegionRepo regionRepo;
+
     @GetMapping("/jobs")
     public String allJobs(Model model) {
         List<Vacancy> vacancies = vacancyRepo.findAll();
@@ -30,6 +36,8 @@ public class VacancyController {
     public String createJob(Model model) {
         Vacancy vacancy = new Vacancy();
         model.addAttribute("job", vacancy);
+        model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("regions", regionRepo.findAll());
         return "create_job";
     }
 
