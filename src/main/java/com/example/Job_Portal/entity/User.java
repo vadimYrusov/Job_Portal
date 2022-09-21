@@ -24,6 +24,8 @@ public class User {
     @NotEmpty
     private String name;
 
+    private String registerRole;
+
     @Column(nullable = false, unique = true)
     @NotEmpty
     private String email;

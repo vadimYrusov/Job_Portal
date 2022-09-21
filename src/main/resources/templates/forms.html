@@ -22,6 +22,12 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/form}">Add new form</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/categories}">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/regions}">Regions</a>
+            </li>
         </ul>
         <form class="d-flex">
             <input class="form-control me-2" type="text" placeholder="Search">
@@ -41,7 +47,7 @@
         <span th:text="${form.getEmail()}">email</span>
         <a class="btn btn-light" style="color: #1b2024" th:href="@{/forms/{id}(id=${form.id})}">Info</a>
         <a class="btn btn-light" style="color: #1b2024" th:href="@{/forms/{id}/update(id=${form.id})}">Edit</a>
-        <a class="btn btn-light" style="color: #1b2024" th:href="@{/form/{id}(id=${form+++++++.id})}">Delete</a>
+        <a class="btn btn-light" style="color: #1b2024" th:href="@{/form/{id}(id=${form.id})}">Delete</a>
     </div>
 </div>
 </body>

@@ -11,13 +11,22 @@
     <div class="container-fluid">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">Link</a>
+                <a class="nav-link" th:href="@{/jobs}">Main</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Link</a>
+                <a class="nav-link" th:href="@{/forms}">Forms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/job}">Add new job</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/form}">Add new form</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/categories}">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/regions}">Regions</a>
             </li>
         </ul>
         <form class="d-flex">

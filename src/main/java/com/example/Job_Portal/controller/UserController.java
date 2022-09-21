@@ -1,8 +1,11 @@
 package com.example.Job_Portal.controller;
 
+import com.example.Job_Portal.entity.Role;
 import com.example.Job_Portal.entity.User;
+import com.example.Job_Portal.repository.RoleRepo;
 import com.example.Job_Portal.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,29 +21,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private final UserRepo userRepo;
+
+    private final RoleRepo roleRepo;
 
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-//    @GetMapping("/users")
-//    public String users(Model model) {
-//        User user = new User(user);
-//        model.addAttribute("user", user);
-//        return "registration";
-//    }
-//
-//    @PostMapping("/registration")
-//    public String saveUser(@ModelAttribute("user") User user, HttpServletRequest request) throws ServletException {
-//        String password = user.getPassword();
-//        user.setPassword(bCryptPasswordEncoder.encode(password));
-//        List<Role> roles = new ArrayList<>();
-//        roles.add(roleRepository.findById(2L).get());
-//        user.setRoles(roles);
-//        userRepository.save(user);
-//        request.login(user.getEmail(), password);
-//        return "redirect:/items";
-//    }
+    @GetMapping("/users")
+    public String users(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String saveUser(@ModelAttribute("user") User user, HttpServletRequest request) throws ServletException {
+        String password = user.getPassword();
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleRepo.getRoleById(2L));
+        user.setRoles(roles);
+        userRepo.save(user);
+        request.login(user.getEmail(), password);
+        return "redirect:/items";
+    }
 }

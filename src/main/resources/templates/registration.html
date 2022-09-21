@@ -11,13 +11,22 @@
     <div class="container-fluid">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">Link</a>
+                <a class="nav-link" th:href="@{/jobs}">Main</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Link</a>
+                <a class="nav-link" th:href="@{/forms}">Forms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/job}">Add new job</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/form}">Add new form</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/categories}">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/regions}">Regions</a>
             </li>
         </ul>
         <form class="d-flex">
@@ -36,7 +45,7 @@
             <div class="card" style="border-radius: 15px">
                 <div class="card-body" style=" background-color: #1b2024">
 
-                    <form th:action="@{/jobs}" th:object="${user}" method="post">
+                    <form th:action="@{/registration}" th:object="${user}" method="post">
 
                         <div class="row align-items-center pt-4 pb-3">
                             <div class="col-md-3 ps-5">
