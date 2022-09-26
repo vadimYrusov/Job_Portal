@@ -55,7 +55,23 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="text" class="form-control form-control-lg" placeholder="Job title"/>
+                                <input th:field="*{name}" type="text" class="form-control form-control-lg" placeholder="Name"/>
+
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0" style="color: #949292">Role</h6>
+
+                            </div>
+                            <div class="col-md-9 pe-5">
+
+                                <select th:field="*{registerRole}" class="form-select" aria-label="Default select example">
+                                    <option value="jobSeeker">Job Seeker</option>
+                                    <option value="employer">Employer</option>
+                                </select>
 
                             </div>
                         </div>
@@ -68,7 +84,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="email" class="form-control form-control-lg"
+                                <input th:field="*{email}" type="email" class="form-control form-control-lg"
                                        placeholder="example@example.com"/>
 
                             </div>
@@ -82,8 +98,8 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input type="password" class="form-control form-control-lg"
-                                       placeholder="Company phone number"/>
+                                <input th:field="*{password}" type="password" class="form-control form-control-lg"
+                                       placeholder="Password"/>
 
                             </div>
                         </div>

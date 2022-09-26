@@ -44,10 +44,14 @@ public class UserController {
         String password = user.getPassword();
         user.setPassword(bCryptPasswordEncoder.encode(password));
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepo.getRoleById(2L));
+        if (user.getRegisterRole().equals("jobSeeker")) {
+            roles.add(roleRepo.getRoleById(2L));
+        } else if (user.getRegisterRole().equals("employer")) {
+            roles.add(roleRepo.getRoleById(3L));
+        }
         user.setRoles(roles);
         userRepo.save(user);
         request.login(user.getEmail(), password);
-        return "redirect:/items";
+        return "redirect:/jobs";
     }
 }
