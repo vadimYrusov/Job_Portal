@@ -26,9 +26,18 @@ public class VacancyController {
     private final RegionRepo regionRepo;
 
     @GetMapping("/jobs")
-    public String allJobs(Model model) {
-        List<Vacancy> vacancies = vacancyRepo.findAll();
-        model.addAttribute("jobs", vacancies);
+    public String allJobs(Model model, String keyword) {
+
+        List<Vacancy> jobs;
+
+        if (keyword == null || keyword.trim().equals("")) {
+            jobs = vacancyRepo.findAll();
+        } else {
+            jobs = vacancyRepo.getByNameContainsIgnoreCase(keyword);
+        }
+
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("keyword", "");
         return "main";
     }
 
@@ -38,6 +47,7 @@ public class VacancyController {
         model.addAttribute("job", vacancy);
         model.addAttribute("categories", categoryRepo.findAll());
         model.addAttribute("regions", regionRepo.findAll());
+        model.addAttribute("keyword", "");
         return "create_job";
     }
 
@@ -65,6 +75,7 @@ public class VacancyController {
     public String updateJob(@PathVariable Long id, Model model) {
         Vacancy vacancy = vacancyRepo.getVacancyById(id);
         model.addAttribute("job", vacancy);
+        model.addAttribute("keyword", "");
         return "update_job";
     }
 

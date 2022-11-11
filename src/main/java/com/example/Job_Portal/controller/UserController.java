@@ -28,7 +28,8 @@ public class UserController {
     private final RoleRepo roleRepo;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("keyword", "");
         return "login";
     }
 
@@ -36,6 +37,7 @@ public class UserController {
     public String users(Model model) {
         User user = new User();
         model.addAttribute("user", user);
+        model.addAttribute("keyword", "");
         return "registration";
     }
 

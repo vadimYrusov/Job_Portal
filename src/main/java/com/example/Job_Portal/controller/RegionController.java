@@ -20,12 +20,14 @@ public class RegionController {
     public String addRegion(Model model) {
         Region region = new Region();
         model.addAttribute("region", region);
+        model.addAttribute("keyword", "");
         return "create_region";
     }
 
     @GetMapping("/regions")
     public String editRegion(Model model) {
         model.addAttribute("regions", regionRepo.findAll());
+        model.addAttribute("keyword", "");
         return "regions";
     }
 
@@ -45,6 +47,7 @@ public class RegionController {
     public String updateRegion(@PathVariable Long id, Model model) {
         Region region = regionRepo.getRegionById(id);
         model.addAttribute("region", region);
+        model.addAttribute("keyword", "");
         return "edit_region";
     }
 

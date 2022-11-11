@@ -20,18 +20,21 @@ public class CategoryController {
     public String addCategory(Model model) {
         Category category = new Category();
         model.addAttribute("category", category);
+        model.addAttribute("keyword", "");
         return "create_category";
     }
 
     @GetMapping("/categories")
     public String listCategories(Model model) {
         model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("keyword", "");
         return "categories";
     }
 
     @GetMapping("/categories/{id}")
     public String getCategory(Model model, @PathVariable Long id) {
         model.addAttribute("categories", categoryRepo.findById(id));
+        model.addAttribute("keyword", "");
         return "create_category";
     }
 
@@ -45,6 +48,7 @@ public class CategoryController {
     public String updateCategory(@PathVariable Long id, Model model) {
         Category category = categoryRepo.getCategoryById(id);
         model.addAttribute("category", category);
+        model.addAttribute("keyword", "");
         return "edit_category";
     }
 

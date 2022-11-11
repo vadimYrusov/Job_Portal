@@ -34,8 +34,8 @@
                 <a class="nav-link" th:href="@{/users}">Register</a>
             </li>
         </ul>
-        <form class="d-flex">
-            <input class="form-control me-2" type="text" placeholder="Search">
+        <form class="d-flex" th:action="@{/jobs}" method="get">
+            <input class="form-control me-2" type="text" placeholder="Search" name="keyword" th:value="${keyword}">
             <button class="btn btn-light" style="color: #1b2024" type="button">Search</button>
         </form>
     </div>
