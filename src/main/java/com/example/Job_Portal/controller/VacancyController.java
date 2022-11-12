@@ -55,6 +55,7 @@ public class VacancyController {
     public String getJob(@PathVariable Long id, Model model) {
         Vacancy vacancy = vacancyRepo.getVacancyById(id);
         model.addAttribute("job", vacancy);
+        model.addAttribute("keyword", "");
         return "job";
     }
 

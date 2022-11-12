@@ -1,8 +1,10 @@
 package com.example.Job_Portal.controller;
 
 import com.example.Job_Portal.entity.Form;
+import com.example.Job_Portal.entity.Vacancy;
 import com.example.Job_Portal.repository.FormRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +18,18 @@ public class FormController {
     private final FormRepo formRepo;
 
     @GetMapping("/forms")
-    public String forms(Model model) {
-        List<Form> forms = formRepo.findAll();
+    public String forms(Model model, String keyword) {
+
+        List<Form> forms;
+
+        if (keyword == null || keyword.trim().equals("")) {
+            forms = formRepo.findAll();
+        } else {
+            forms = formRepo.getByNameContainsIgnoreCase(keyword);
+        }
+
         model.addAttribute("forms", forms);
+        model.addAttribute("keyword", "");
         return "forms";
     }
 
@@ -26,6 +37,7 @@ public class FormController {
     public String createForm(Model model) {
         Form form = new Form();
         model.addAttribute("form", form);
+        model.addAttribute("keyword", "");
         return "create_form";
     }
 
@@ -33,6 +45,7 @@ public class FormController {
     public String getForm(@PathVariable Long id, Model model) {
         Form form = formRepo.getFormById(id);
         model.addAttribute("form", form);
+        model.addAttribute("keyword", "");
         return "form";
     }
 
@@ -52,6 +65,7 @@ public class FormController {
     public String updateForm(@PathVariable Long id, Model model) {
         Form form = formRepo.getFormById(id);
         model.addAttribute("form", form);
+        model.addAttribute("keyword", "");
         return "update_form";
     }
 

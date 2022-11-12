@@ -29,8 +29,8 @@
                 <a class="nav-link" th:href="@{/regions}">Regions</a>
             </li>
         </ul>
-        <form class="d-flex">
-            <input class="form-control me-2" type="text" placeholder="Search">
+        <form class="d-flex" th:action="@{/forms}" method="get">
+            <input class="form-control me-2" type="text" placeholder="Search" name="keyword" th:value="${keyword}">
             <button class="btn btn-light" style="color: #1b2024" type="button">Search</button>
         </form>
     </div>
