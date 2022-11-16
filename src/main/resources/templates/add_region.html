@@ -23,10 +23,10 @@
                 <a class="nav-link" th:href="@{/form}">Add new form</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/categories}">Categories</a>
+                <a class="nav-link" sec:authorize="hasRole('ADMIN')" th:href="@{/categories}">Categories</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/regions}">Regions</a>
+                <a class="nav-link" sec:authorize="hasRole('ADMIN')" th:href="@{/regions}">Regions</a>
             </li>
         </ul>
         <form class="d-flex" th:action="@{/jobs}" method="get">
